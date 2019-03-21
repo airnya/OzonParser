@@ -13,10 +13,10 @@ namespace htmlParsing.Views
     public partial class AboutPage : ContentPage
     {
         ParserWorker<string[]> parser;
-//        int startInt = 0;
-//        int endInt = 1;
-//        ListView listitems;
-//        public String labelText;
+        //        int startInt = 0;
+        //        int endInt = 1;
+        //        ListView listitems;
+        //        public String labelText;
         public Book phone { get; set; }
 
         public AboutPage()
@@ -38,48 +38,53 @@ namespace htmlParsing.Views
 
             parser.OnCompleted += Parser_OnCompleted;
             parser.OnNewData += Parser_OnNewData;
-          //  string html = @"<!DOCTYPE html>  
-//<html>  
-//<body>  
-//<h2>HTML Image Parsing</h2>  
-//<img src='https://www.w3schools.com/html/img_girl.jpg' alt='Girl in a jacket' width='500' height='600'>  
-//</body>  
-//</html>  ";
-//            var url = "https://oilprice.com/oil-price-charts#prices";
-//            var web = new HtmlWeb();
-//            var htmlDoc = web.Load(url);
-     //       myImage.Source = HtmlParsing(html);
-//            myLabel.Text = HtmlParsing(url);
-            
+            //  string html = @"<!DOCTYPE html>  
+            //<html>  
+            //<body>  
+            //<h2>HTML Image Parsing</h2>  
+            //<img src='https://www.w3schools.com/html/img_girl.jpg' alt='Girl in a jacket' width='500' height='600'>  
+            //</body>  
+            //</html>  ";
+            //            var url = "https://oilprice.com/oil-price-charts#prices";
+            //            var web = new HtmlWeb();
+            //            var htmlDoc = web.Load(url);
+            //       myImage.Source = HtmlParsing(html);
+            //            myLabel.Text = HtmlParsing(url);
+
         }
 
-/*        string HtmlParsing(string url)
-        {
-            HtmlDocument document = new HtmlDocument();
-            document.LoadHtml(url);
-            //Getting img src value    
-            var imgUrl = document.DocumentNode.Descendants("img").FirstOrDefault().GetAttributeValue("src", null);
-            string name = document.DocumentNode
-                        .SelectSingleNode("//*[@class='oilprices__table'][1]/tbody/tr[6]/td[2]").InnerText;
-            return name;
-        }
-*/
+        /*        string HtmlParsing(string url)
+                {
+                    HtmlDocument document = new HtmlDocument();
+                    document.LoadHtml(url);
+                    //Getting img src value    
+                    var imgUrl = document.DocumentNode.Descendants("img").FirstOrDefault().GetAttributeValue("src", null);
+                    string name = document.DocumentNode
+                                .SelectSingleNode("//*[@class='oilprices__table'][1]/tbody/tr[6]/td[2]").InnerText;
+                    return name;
+                }
+        */
         private void Parser_OnNewData(object arg1, string[] arg2)
         {
             //  listView.ItemsSource.Add(arg2);
             try
             {
-                string h = "https:";
-                var BookName = (arg2);
-                string newStr = String.Join(" ", BookName);
-                Title = newStr;
-                myImage.Source = h+newStr;
-                phone.imgUrl = h+newStr;
+                string prefix = "https:";
+              //  var BookTitle = (arg2[0]);
+             //   var BookAuthor = (arg2[1]);
+                var BookImg = (arg2);
+
+                string BookUrl = String.Join(" ", BookImg);
+                //                Title = newStr;
+                                myImage.Source = prefix + BookUrl;
+                //                phone.imgUrl = prefix+newStr;
+               // phone.imgUrl = prefix+BookUrl;
+
                 //                string.Join(",", BookName);
             }
             catch (Exception e)
             {
-            throw e;
+                throw e;
             }
         }
 
@@ -97,7 +102,7 @@ namespace htmlParsing.Views
         {
             //           parser.Settings = new OzonSettings(startInt,endInt);
 
- //           this.BindingContext = new BookViewModel
+            //           this.BindingContext = new BookViewModel
             parser.Settings = new OzonSettings(phone.bookId);
             parser.Start();
         }

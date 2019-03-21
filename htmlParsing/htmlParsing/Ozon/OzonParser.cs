@@ -10,31 +10,21 @@ namespace htmlParsing.Ozon
 {
     class OzonParser : IParser<string[]>
     {
-        Book phone { get; set; }
+      //  Book phone { get; set; }
 
         public string[] Parse(IHtmlDocument document)
         {
             var list = new List<string>();
-            // var booktitle = document.QuerySelectorAll("h1").Where(item => item.ClassName != null && item.ClassName.Contains("bItemName")).First();
-            //var author = document.QuerySelectorAll("div[itemprop*='author']").First();
-            //var author = document.QuerySelectorAll(".eItemProperties_href");
-            //var author = document.QuerySelectorAll("div").Where(item => item.ClassName != null && item.ClassName.Contains("eItemProperties_text")).First();
-            // var img = document.QuerySelectorAll("img").Where(item => item.ClassName != null && item.ClassName.Contains("eMicroGallery_fullImage mVisible")).First();
-            //document.querySelectorAll("div[id$='foo']")
+       //     var booktitle = document.QuerySelectorAll("h1").Where(item => item.ClassName != null && item.ClassName.Contains("bItemName")).First();
+      //      var author = document.QuerySelectorAll("div[itemprop*='author']").First();
             var img = document.QuerySelectorAll("img[itemprop*='image']").First();
-
-            //       var items = document.QuerySelectorAll("h1").Where(item => item.ClassName != null && item.ClassName.Contains("bItemName"));
-            //   var items = document.QuerySelectorAll("a").Where(item => item.ClassName != null && item.ClassName.Contains("eItemProperties_href"));
-            //var items = document.QuerySelectorAll("a").Where(item => item.ClassName != null && item.ClassName.Contains("eItemProperties_href")).First();
-            //  var items = document.QuerySelector("h1").GetElementsByClassName("bItemName");
-            //var items = document.QuerySelectorAll("a").Where(item => item.);
-            //            foreach (IElement element in document.QuerySelector("a").GetElementsByClassName("eItemProperties_href"))
-            //            {
-            //}
+            //document.querySelectorAll("div[id$='foo']")
 
             // foreach (var item in author)
             // {
             list.Add(img.GetAttribute("src"));
+      //      list.Add(author.TextContent);
+       //     list.Add(booktitle.TextContent);
           //  }
             //           foreach (var item in items)
             //           {
