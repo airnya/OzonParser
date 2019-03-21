@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="htmlParsing.Views.AboutPage"
+             xmlns:vm="clr-namespace:htmlParsing.ViewModels">
+    <StackLayout>
+        <StackLayout>
+            <!-- <Entry Text="{Binding labelText, Mode=TwoWay}"/> -->
+            <Label Text="Введи id пидор"/>
+            <Entry Text="{Binding phone.bookId}"/>
+            <Button Text="Start" Clicked="ButtonStart_Click"/>
+            <!--            <Entry x:Name="EntryEnd" Text="{Binding endInt, Mode=TwoWay}" />
+
+            <Button Text="End" Clicked="ButtonAbort_Click"/> -->
+            <Label Text="Название книги:"/>
+            <Label Text="{Binding Title, Mode=TwoWay}"/>
+            <Image x:Name="myImage" VerticalOptions="FillAndExpand"/>
+            <Image x:Name="bookImage" VerticalOptions="FillAndExpand" Source="{Binding phone.imgUrl}"/>
+            <Label x:Name="myLabel" />
+
+
+        </StackLayout>
+        
+        <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding listitems}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Text}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
